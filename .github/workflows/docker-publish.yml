@@ -39,14 +39,6 @@ jobs:
         lfs: true
         submodules: 'recursive'
         
-
-    - name: Log in to Docker Hub (docker.io)
-      uses: docker/login-action@v2
-      if: github.event_name != 'pull_request'
-      with:
-        username: ${{ secrets.DOCKER_HUB_USER }} # These two fields need to be set on GitHub under Secrets.
-        password: ${{ secrets.DOCKER_HUB_TOKEN }} # Recommend using a revokable token here.
-        
     - name: Docker prune to save space # If you switch to self-hosted runners, this should be removed.
       run: echo y | docker system prune -a
     
